@@ -1,0 +1,19 @@
+Q1
+select max(resale_price), min(resale_price),floor_area_sqm from resale_flat_prices_2017 group by floor_area_sqm order by 3 asc
+
+Q2
+select round(avg(resale_price/floor_area_sqm),2),town from resale_flat_prices_2017 group by town
+
+Q3
+SELECT count(*), 
+CASE WHEN resale_price > 700000 THEN 'Premium' 
+When resale_price >= 400000 then 'Mid-Range'
+ELSE 'Budget' END AS price_level
+FROM resale_flat_prices_2017
+group by price_level
+order by 1 desc;
+
+Q4
+select count(*),town from resale_flat_prices_2017 
+where concat(month,'-01')::date between '2017-01-01' and '2017-03-01'
+group by town
